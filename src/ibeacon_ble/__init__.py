@@ -1,4 +1,5 @@
-__version__ = "0.1.0"
+from __future__ import annotations
+
 import struct
 from dataclasses import dataclass
 from uuid import UUID
@@ -8,6 +9,10 @@ from home_assistant_bluetooth import BluetoothServiceInfo
 UNPACK_IBEACON = struct.Struct(">HHb").unpack
 
 IBEACON_MFR_ID = 76
+
+
+__version__ = "0.1.0"
+
 __all__ = ["parse", "iBeaconAdvertisement"]
 
 
