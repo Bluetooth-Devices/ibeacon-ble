@@ -1,11 +1,11 @@
 __version__ = "0.0.1"
 from dataclasses import dataclass
 
-__all__ = ["parse", "IBeaconAdvertisement"]
+__all__ = ["parse", "iBeaconAdvertisement"]
 
 
 @dataclass
-class IBeaconAdvertisement:
+class iBeaconAdvertisement:
     """A dataclass for iBeacon BLE advertisements."""
 
     uuid: str
@@ -14,8 +14,8 @@ class IBeaconAdvertisement:
     power: int
 
 
-def parse() -> IBeaconAdvertisement:
-    return IBeaconAdvertisement(
+def parse() -> iBeaconAdvertisement:
+    return iBeaconAdvertisement(
         uuid="00000000-0000-0000-0000-000000000000",
         major=0,
         minor=0,

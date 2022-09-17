@@ -1,5 +1,5 @@
-from ibeacon_ble.main import add
+from ibeacon_ble import iBeaconAdvertisement, parse
 
 
-def test_add():
-    assert add(1, 1) == 2
+def test_parse():
+    isinstance(parse(), iBeaconAdvertisement)
