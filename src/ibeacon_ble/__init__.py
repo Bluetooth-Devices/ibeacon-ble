@@ -34,6 +34,8 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
     if IBEACON_MFR_ID not in service_info.manufacturer_data:
         return None
     data = service_info.manufacturer_data[IBEACON_MFR_ID]
+    if data[0] != 0x02 or data[1] != 0x15:
+        return None
 
     # Thanks to https://github.com/custom-components/ble_monitor/blob/master/custom_components/ble_monitor/ble_parser/ibeacon.py
     uuid = data[2:18]

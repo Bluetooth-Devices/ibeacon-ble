@@ -25,6 +25,15 @@ NOT_IBEACON_SERVIE_INFO = BluetoothServiceInfo(
     service_uuids=[],
     source="hci0",
 )
+NOT_IBEACON_SERVIE_INFO_2 = BluetoothServiceInfo(
+    address="00:00:00:00:00:00",
+    rssi=-60,
+    name="not",
+    manufacturer_data={76: b"\x10\x15BlueCharmBeacons\x0e\xfe\x13U\xc5"},
+    service_data={},
+    service_uuids=[],
+    source="hci0",
+)
 
 
 def test_parse():
@@ -41,4 +50,9 @@ def test_parse():
 
 def test_not_parse():
     parsed = parse(NOT_IBEACON_SERVIE_INFO)
+    assert parsed is None
+
+
+def test_not_parse_2():
+    parsed = parse(NOT_IBEACON_SERVIE_INFO_2)
     assert parsed is None
