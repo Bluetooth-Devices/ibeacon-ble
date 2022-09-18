@@ -39,7 +39,7 @@ class iBeaconAdvertisement:
     cypress_humidity: float
     rssi: int
     source: str
-    distance: float
+    distance: float | None
 
 
 def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
@@ -67,12 +67,11 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
     )
 
 
-def calculate_distance_meters(power: int, rssi: int) -> float:
+def calculate_distance_meters(power: int, rssi: int) -> float | None:
     """Calculate the distance in meters between the device and the beacon."""
-    if power >= 0:
-        power = -power
     if rssi == 0:
-        return -1.0
+        return None
     if (ratio := rssi * 1.0 / power) < 1.0:
         return pow(ratio, 10)
-    return cast(float, 0.89976 * pow(ratio, 7.7095) + 0.111)
+    distance = cast(float, 0.89976 * pow(ratio, 7.7095) + 0.111)
+    return distance if distance < 1000 else None
