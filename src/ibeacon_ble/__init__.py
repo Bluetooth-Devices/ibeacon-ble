@@ -20,6 +20,9 @@ __all__ = [
     "parse",
     "is_ibeacon_service_info",
     "iBeaconAdvertisement",
+    "APPLE_MFR_ID",
+    "IBEACON_FIRST_BYTE",
+    "IBEACON_SECOND_BYTE",
 ]
 
 
