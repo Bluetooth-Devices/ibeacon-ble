@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.2 (2022-09-18)
+### Fix
+* Handle more garage data ([#9](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/9)) ([`9ee81c7`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/9ee81c7ffed6dd0877116f95c6f5f9879a453910))
+
 ## v0.6.1 (2022-09-18)
 ### Fix
 * Round distance ([#8](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/8)) ([`4abfe18`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/4abfe18c7486db36dc061c0955b1e1b82e384fb7))
