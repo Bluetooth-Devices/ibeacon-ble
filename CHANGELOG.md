@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.1 (2022-09-18)
+### Fix
+* Round distance ([#8](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/8)) ([`4abfe18`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/4abfe18c7486db36dc061c0955b1e1b82e384fb7))
+
 ## v0.6.0 (2022-09-18)
 ### Feature
 * Abstract checking a service_info into is_ibeacon_service_info ([#7](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/7)) ([`2b95037`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/2b950373a790372ac1f49b297f9f3ff27f85a38b))
