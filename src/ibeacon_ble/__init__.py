@@ -30,6 +30,7 @@ __all__ = [
 class iBeaconAdvertisement:
     """A dataclass for iBeacon BLE advertisements."""
 
+    name: str
     uuid: UUID
     major: int
     minor: int
@@ -38,6 +39,7 @@ class iBeaconAdvertisement:
     cypress_humidity: float
     rssi: int
     source: str
+    distance: float
 
 
 def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
@@ -52,6 +54,7 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
     (major, minor, power) = UNPACK_IBEACON(data[18:23])
 
     return iBeaconAdvertisement(
+        name=service_info.name,
         uuid=UUID("".join(f"{i:02X}" for i in uuid)),
         major=major,
         minor=minor,
@@ -60,6 +63,7 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         cypress_humidity=125 * ((major & 0xFF) * 256) / 65536 - 6.0,
         rssi=service_info.rssi,
         source=service_info.source,
+        distance=calculate_distance_meters(power, service_info.rssi),
     )
 
 
