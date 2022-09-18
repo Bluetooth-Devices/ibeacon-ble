@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2022-09-18)
+### Feature
+* Add name and distance ([#5](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/5)) ([`042130e`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/042130e0d2bdc0cdc226901eb88fe89e7a4bdd73))
+
 ## v0.3.0 (2022-09-18)
 ### Feature
 * Add distance calculator ([#4](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/4)) ([`4684dab`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/4684dabf2bf83ddee83227ea9b299a85aadb74ac))
