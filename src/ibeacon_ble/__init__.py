@@ -18,11 +18,8 @@ __version__ = "0.5.0"
 
 __all__ = [
     "parse",
-    "calculate_distance_meters",
+    "is_ibeacon_service_info",
     "iBeaconAdvertisement",
-    "APPLE_MFR_ID",
-    "IBEACON_FIRST_BYTE",
-    "IBEACON_SECOND_BYTE",
 ]
 
 
@@ -42,12 +39,21 @@ class iBeaconAdvertisement:
     distance: float | None
 
 
-def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
+def is_ibeacon_service_info(service_info: BluetoothServiceInfo) -> bool:
+    """Return True if the service info is an iBeacon."""
     if APPLE_MFR_ID not in service_info.manufacturer_data:
-        return None
+        return False
     data = service_info.manufacturer_data[APPLE_MFR_ID]
-    if data[0] != 0x02 or data[1] != 0x15:
+    if data[0] != IBEACON_FIRST_BYTE or data[1] != IBEACON_SECOND_BYTE:
+        return False
+    return True
+
+
+def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
+    if not is_ibeacon_service_info(service_info):
         return None
+
+    data = service_info.manufacturer_data[APPLE_MFR_ID]
 
     # Thanks to https://github.com/custom-components/ble_monitor/blob/master/custom_components/ble_monitor/ble_parser/ibeacon.py
     uuid = data[2:18]
