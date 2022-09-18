@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import struct
 from dataclasses import dataclass
+from typing import cast
 from uuid import UUID
 
 from home_assistant_bluetooth import BluetoothServiceInfo
@@ -13,7 +14,7 @@ IBEACON_MFR_ID = 76
 
 __version__ = "0.2.0"
 
-__all__ = ["parse", "iBeaconAdvertisement"]
+__all__ = ["parse", "calculate_distance_meters", "iBeaconAdvertisement"]
 
 
 @dataclass
@@ -51,3 +52,14 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         rssi=service_info.rssi,
         source=service_info.source,
     )
+
+
+def calculate_distance_meters(power: int, rssi: int) -> float:
+    """Calculate the distance in meters between the device and the beacon."""
+    if power >= 0:
+        power = -power
+    if rssi == 0:
+        return -1.0
+    if (ratio := rssi * 1.0 / power) < 1.0:
+        return pow(ratio, 10)
+    return cast(float, 0.89976 * pow(ratio, 7.7095) + 0.111)
