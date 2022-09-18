@@ -52,6 +52,7 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
     # Thanks to https://github.com/custom-components/ble_monitor/blob/master/custom_components/ble_monitor/ble_parser/ibeacon.py
     uuid = data[2:18]
     (major, minor, power) = UNPACK_IBEACON(data[18:23])
+    distance = calculate_distance_meters(power, service_info.rssi)
 
     return iBeaconAdvertisement(
         name=service_info.name,
@@ -63,7 +64,7 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         cypress_humidity=125 * ((major & 0xFF) * 256) / 65536 - 6.0,
         rssi=service_info.rssi,
         source=service_info.source,
-        distance=calculate_distance_meters(power, service_info.rssi),
+        distance=round(distance, 1) if distance is not None else None,
     )
 
 
