@@ -2,18 +2,28 @@ from __future__ import annotations
 
 import struct
 from dataclasses import dataclass
+from typing import cast
 from uuid import UUID
 
 from home_assistant_bluetooth import BluetoothServiceInfo
 
 UNPACK_IBEACON = struct.Struct(">HHb").unpack
 
-IBEACON_MFR_ID = 76
 
+APPLE_MFR_ID = 76
+IBEACON_FIRST_BYTE = 0x02
+IBEACON_SECOND_BYTE = 0x15
 
 __version__ = "0.2.0"
 
-__all__ = ["parse", "iBeaconAdvertisement"]
+__all__ = [
+    "parse",
+    "calculate_distance_meters",
+    "iBeaconAdvertisement",
+    "APPLE_MFR_ID",
+    "IBEACON_FIRST_BYTE",
+    "IBEACON_SECOND_BYTE",
+]
 
 
 @dataclass
@@ -31,9 +41,9 @@ class iBeaconAdvertisement:
 
 
 def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
-    if IBEACON_MFR_ID not in service_info.manufacturer_data:
+    if APPLE_MFR_ID not in service_info.manufacturer_data:
         return None
-    data = service_info.manufacturer_data[IBEACON_MFR_ID]
+    data = service_info.manufacturer_data[APPLE_MFR_ID]
     if data[0] != 0x02 or data[1] != 0x15:
         return None
 
@@ -51,3 +61,14 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         rssi=service_info.rssi,
         source=service_info.source,
     )
+
+
+def calculate_distance_meters(power: int, rssi: int) -> float:
+    """Calculate the distance in meters between the device and the beacon."""
+    if power >= 0:
+        power = -power
+    if rssi == 0:
+        return -1.0
+    if (ratio := rssi * 1.0 / power) < 1.0:
+        return pow(ratio, 10)
+    return cast(float, 0.89976 * pow(ratio, 7.7095) + 0.111)

@@ -2,7 +2,7 @@ from uuid import UUID
 
 from home_assistant_bluetooth import BluetoothServiceInfo
 
-from ibeacon_ble import iBeaconAdvertisement, parse
+from ibeacon_ble import calculate_distance_meters, iBeaconAdvertisement, parse
 
 SERVICE_INFO = BluetoothServiceInfo(
     address="00:00:00:00:00:00",
@@ -56,3 +56,12 @@ def test_not_parse():
 def test_not_parse_2():
     parsed = parse(NOT_IBEACON_SERVIE_INFO_2)
     assert parsed is None
+
+
+def tests_calculate_distance_meters():
+    assert calculate_distance_meters(-59, -60) == 1.1352362990362899
+    assert calculate_distance_meters(59, -60) == 1.1352362990362899
+    assert calculate_distance_meters(59, 0) == -1.0
+    assert calculate_distance_meters(-3, -100) == 495176891132.65063
+    assert calculate_distance_meters(-3, -3) == 1.01076
+    assert calculate_distance_meters(-4, -3) == 0.056313514709472656
