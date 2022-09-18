@@ -9,12 +9,21 @@ from home_assistant_bluetooth import BluetoothServiceInfo
 
 UNPACK_IBEACON = struct.Struct(">HHb").unpack
 
-IBEACON_MFR_ID = 76
 
+APPLE_MFR_ID = 76
+IBEACON_FIRST_BYTE = 0x02
+IBEACON_SECOND_BYTE = 0x15
 
 __version__ = "0.2.0"
 
-__all__ = ["parse", "calculate_distance_meters", "iBeaconAdvertisement"]
+__all__ = [
+    "parse",
+    "calculate_distance_meters",
+    "iBeaconAdvertisement",
+    "APPLE_MFR_ID",
+    "IBEACON_FIRST_BYTE",
+    "IBEACON_SECOND_BYTE",
+]
 
 
 @dataclass
@@ -32,9 +41,9 @@ class iBeaconAdvertisement:
 
 
 def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
-    if IBEACON_MFR_ID not in service_info.manufacturer_data:
+    if APPLE_MFR_ID not in service_info.manufacturer_data:
         return None
-    data = service_info.manufacturer_data[IBEACON_MFR_ID]
+    data = service_info.manufacturer_data[APPLE_MFR_ID]
     if data[0] != 0x02 or data[1] != 0x15:
         return None
 
