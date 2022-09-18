@@ -82,6 +82,7 @@ def calculate_distance_meters(power: int, rssi: int) -> float | None:
     if rssi == 0:
         return None
     if (ratio := rssi * 1.0 / power) < 1.0:
-        return pow(ratio, 10)
-    distance = cast(float, 0.89976 * pow(ratio, 7.7095) + 0.111)
+        distance = pow(ratio, 10)
+    else:
+        distance = cast(float, 0.89976 * pow(ratio, 7.7095) + 0.111)
     return distance if distance < 1000 else None
