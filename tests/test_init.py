@@ -45,6 +45,7 @@ def test_parse():
     assert parsed.minor == 4949
     assert parsed.power == -59
     assert parsed.rssi == -60
+    assert parsed.distance == 1.1
     assert parsed.uuid == UUID("426c7565-4368-6172-6d42-6561636f6e73")
 
 
