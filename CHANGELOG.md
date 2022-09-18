@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.5.0 (2022-09-18)
+### Feature
+* Reject invalid distance data and return None ([#6](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/6)) ([`be8b9b6`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/be8b9b67e07bbb3f5bc82103f196392f663388e3))
+
 ## v0.4.0 (2022-09-18)
 ### Feature
 * Add name and distance ([#5](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/5)) ([`042130e`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/042130e0d2bdc0cdc226901eb88fe89e7a4bdd73))
