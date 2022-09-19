@@ -74,7 +74,7 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         cypress_humidity=125 * ((major & 0xFF) * 256) / 65536 - 6.0,
         rssi=service_info.rssi,
         source=service_info.source,
-        distance=round(distance, 1) if distance is not None else None,
+        distance=round(distance) if distance is not None else None,
     )
 
 
