@@ -39,7 +39,7 @@ class iBeaconAdvertisement:
     cypress_humidity: float
     rssi: int
     source: str
-    distance: float | None
+    distance: int | None
 
 
 def is_ibeacon_service_info(service_info: BluetoothServiceInfo) -> bool:
@@ -74,7 +74,7 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         cypress_humidity=125 * ((major & 0xFF) * 256) / 65536 - 6.0,
         rssi=service_info.rssi,
         source=service_info.source,
-        distance=round(distance) if distance is not None else None,
+        distance=int(round(distance)) if distance is not None else None,
     )
 
 
