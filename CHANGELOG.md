@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.3 (2022-09-19)
+### Fix
+* Add guard for short data ([#10](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/10)) ([`4057bfd`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/4057bfd4d7cf22b29256f0416e379b45b2cec953))
+
 ## v0.6.2 (2022-09-18)
 ### Fix
 * Handle more garage data ([#9](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/9)) ([`9ee81c7`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/9ee81c7ffed6dd0877116f95c6f5f9879a453910))
