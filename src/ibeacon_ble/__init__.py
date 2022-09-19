@@ -49,6 +49,8 @@ def is_ibeacon_service_info(service_info: BluetoothServiceInfo) -> bool:
     data = service_info.manufacturer_data[APPLE_MFR_ID]
     if data[0] != IBEACON_FIRST_BYTE or data[1] != IBEACON_SECOND_BYTE:
         return False
+    if len(data) < 23:
+        return False
     return True
 
 
@@ -57,7 +59,6 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         return None
 
     data = service_info.manufacturer_data[APPLE_MFR_ID]
-
     # Thanks to https://github.com/custom-components/ble_monitor/blob/master/custom_components/ble_monitor/ble_parser/ibeacon.py
     uuid = data[2:18]
     (major, minor, power) = UNPACK_IBEACON(data[18:23])
