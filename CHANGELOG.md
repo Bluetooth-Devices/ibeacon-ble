@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.4 (2022-09-19)
+### Fix
+* Round to int to avoid wobble ([#11](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/11)) ([`f87c150`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/f87c15078c5d03bb0ce9f336e59dd5f0ec1ff93d))
+
 ## v0.6.3 (2022-09-19)
 ### Fix
 * Add guard for short data ([#10](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/10)) ([`4057bfd`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/4057bfd4d7cf22b29256f0416e379b45b2cec953))
