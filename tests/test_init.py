@@ -58,6 +58,10 @@ def test_parse():
     assert parsed.distance == 1
     assert parsed.uuid == UUID("426c7565-4368-6172-6d42-6561636f6e73")
 
+    parsed.update_rssi(-70)
+    assert parsed.rssi == -70
+    assert parsed.distance == 3
+
 
 def test_not_parse():
     parsed = parse(NOT_IBEACON_SERVIE_INFO)
