@@ -42,6 +42,12 @@ class iBeaconAdvertisement:
     source: str
     distance: int | None
 
+    def update_rssi(self, rssi: int) -> None:
+        """Update the RSSI and distance."""
+        self.rssi = rssi
+        distance = calculate_distance_meters(self.power, rssi)
+        self.distance = int(round(distance)) if distance is not None else None
+
 
 def is_ibeacon_service_info(service_info: BluetoothServiceInfo) -> bool:
     """Return True if the service info is an iBeacon."""
