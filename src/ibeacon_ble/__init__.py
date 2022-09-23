@@ -9,6 +9,7 @@ from home_assistant_bluetooth import BluetoothServiceInfo
 
 UNPACK_IBEACON = struct.Struct(">HHb").unpack
 
+MAX_THEORETICAL_DISTANCE = 400.0
 
 APPLE_MFR_ID = 76
 IBEACON_FIRST_BYTE = 0x02
@@ -86,4 +87,4 @@ def calculate_distance_meters(power: int, rssi: int) -> float | None:
         distance = pow(ratio, 10)
     else:
         distance = cast(float, 0.89976 * pow(ratio, 7.7095) + 0.111)
-    return distance if distance < 1000 else None
+    return min(distance, MAX_THEORETICAL_DISTANCE)
