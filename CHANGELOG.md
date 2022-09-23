@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.6.5 (2022-09-23)
+### Fix
+* Clamp distance to max theoretical value ([#12](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/12)) ([`ae71fbd`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/ae71fbdebba18f0fbaf1dcdf6db135eb6e86edc2))
+
 ## v0.6.4 (2022-09-19)
 ### Fix
 * Round to int to avoid wobble ([#11](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/11)) ([`f87c150`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/f87c15078c5d03bb0ce9f336e59dd5f0ec1ff93d))
