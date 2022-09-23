@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.0 (2022-09-23)
+### Feature
+* Add update_distance method ([#13](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/13)) ([`56edbb5`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/56edbb50569406fc5bf609acb0b8b01bf430ad58))
+
 ## v0.6.5 (2022-09-23)
 ### Fix
 * Clamp distance to max theoretical value ([#12](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/12)) ([`ae71fbd`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/ae71fbdebba18f0fbaf1dcdf6db135eb6e86edc2))
