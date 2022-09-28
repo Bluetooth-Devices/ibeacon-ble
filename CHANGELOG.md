@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.1 (2022-09-28)
+### Fix
+* Ignore tilt ble devices ([#14](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/14)) ([`6ce26fa`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/6ce26faa04eafa187b34b0478b66180c99d12c71))
+
 ## v0.7.0 (2022-09-23)
 ### Feature
 * Add update_distance method ([#13](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/13)) ([`56edbb5`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/56edbb50569406fc5bf609acb0b8b01bf430ad58))
