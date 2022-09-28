@@ -26,6 +26,17 @@ __all__ = [
     "IBEACON_SECOND_BYTE",
 ]
 
+TILT_UUIDS = {
+    "A495BB10C5B14B44B5121370F02D74DE",
+    "A495BB20C5B14B44B5121370F02D74DE",
+    "A495BB30C5B14B44B5121370F02D74DE",
+    "A495BB40C5B14B44B5121370F02D74DE",
+    "A495BB50C5B14B44B5121370F02D74DE",
+    "A495BB60C5B14B44B5121370F02D74DE",
+    "A495BB70C5B14B44B5121370F02D74DE",
+    "A495BB80C5B14B44B5121370F02D74DE",
+}
+
 
 @dataclass
 class iBeaconAdvertisement:
@@ -68,12 +79,16 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
     data = service_info.manufacturer_data[APPLE_MFR_ID]
     # Thanks to https://github.com/custom-components/ble_monitor/blob/master/custom_components/ble_monitor/ble_parser/ibeacon.py
     uuid = data[2:18]
+    uuid_str = "".join(f"{i:02X}" for i in uuid)
+    if uuid_str in TILT_UUIDS:
+        return None
+
     (major, minor, power) = UNPACK_IBEACON(data[18:23])
     distance = calculate_distance_meters(power, service_info.rssi)
 
     return iBeaconAdvertisement(
         name=service_info.name,
-        uuid=UUID("".join(f"{i:02X}" for i in uuid)),
+        uuid=UUID(uuid_str),
         major=major,
         minor=minor,
         power=power,

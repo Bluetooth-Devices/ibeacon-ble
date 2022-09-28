@@ -45,6 +45,18 @@ SHORT_SERVICE_INFO = BluetoothServiceInfo(
     source="hci0",
 )
 
+TILT_SERVICE_INFO = BluetoothServiceInfo(
+    address="00:00:00:00:00:00",
+    rssi=-60,
+    name="tilt",
+    manufacturer_data={
+        76: b"\x02\x15\xa4\x95\xbbp\xc5\xb1KD\xb5\x12\x13p\xf0-t\xde\x00X\x06\xc8\xc5"
+    },
+    service_data={},
+    service_uuids=[],
+    source="hci0",
+)
+
 
 def test_parse():
     parsed = parse(SERVICE_INFO)
@@ -75,6 +87,11 @@ def test_not_parse_2():
 
 def test_not_parse_short_service_info():
     parsed = parse(SHORT_SERVICE_INFO)
+    assert parsed is None
+
+
+def test_ignore_tilt():
+    parsed = parse(TILT_SERVICE_INFO)
     assert parsed is None
 
 
