@@ -37,6 +37,8 @@ TILT_UUIDS = {
     "A495BB80C5B14B44B5121370F02D74DE",
 }
 
+BANNED_UUIDS = {"1CA92E23F0874DF7B9A2FD4B716A4BF6"} | TILT_UUIDS
+
 
 @dataclass
 class iBeaconAdvertisement:
@@ -80,7 +82,11 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
     # Thanks to https://github.com/custom-components/ble_monitor/blob/master/custom_components/ble_monitor/ble_parser/ibeacon.py
     uuid = data[2:18]
     uuid_str = "".join(f"{i:02X}" for i in uuid)
-    if uuid_str in TILT_UUIDS:
+
+    # Tilt Hydrometers and devices that spew random major/minor values
+    # We don't actually need to ban them since the integration will eventually
+    # filter them out, but this is a nice optimization.
+    if uuid_str in BANNED_UUIDS:
         return None
 
     (major, minor, power) = UNPACK_IBEACON(data[18:23])
