@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.2 (2022-09-30)
+### Fix
+* Add 1CA92E23F0874DF7B9A2FD4B716A4BF6 to banned uuids ([#15](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/15)) ([`f00d6aa`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/f00d6aa4a35767675598fad4acccd6248b778e24))
+
 ## v0.7.1 (2022-09-28)
 ### Fix
 * Ignore tilt ble devices ([#14](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/14)) ([`6ce26fa`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/6ce26faa04eafa187b34b0478b66180c99d12c71))
