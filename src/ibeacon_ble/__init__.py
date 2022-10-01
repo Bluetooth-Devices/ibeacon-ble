@@ -108,7 +108,7 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
 
 def calculate_distance_meters(power: int, rssi: int) -> float | None:
     """Calculate the distance in meters between the device and the beacon."""
-    if rssi == 0:
+    if rssi == 0 or power == 0:
         return None
     if (ratio := rssi * 1.0 / power) < 1.0:
         distance = pow(ratio, 10)
