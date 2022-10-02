@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.3 (2022-10-02)
+### Fix
+* Handle ibeacon with impossible power value of 0 ([#16](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/16)) ([`9a9206a`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/9a9206a5db1c843ae227ba7bdc08d2618dee6e86))
+
 ## v0.7.2 (2022-09-30)
 ### Fix
 * Add 1CA92E23F0874DF7B9A2FD4B716A4BF6 to banned uuids ([#15](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/15)) ([`f00d6aa`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/f00d6aa4a35767675598fad4acccd6248b778e24))
