@@ -56,6 +56,15 @@ TILT_SERVICE_INFO = BluetoothServiceInfo(
     service_uuids=[],
     source="hci0",
 )
+IBEACON_ZERO_POWER = BluetoothServiceInfo(
+    address="00:00:00:00:00:00",
+    rssi=-60,
+    name="not",
+    manufacturer_data={76: b"\x02\x15BlueCharmBeacons\x0e\xfe\x13U\x00"},
+    service_data={},
+    service_uuids=[],
+    source="hci0",
+)
 
 
 def test_parse():
@@ -93,6 +102,12 @@ def test_not_parse_short_service_info():
 def test_ignore_tilt():
     parsed = parse(TILT_SERVICE_INFO)
     assert parsed is None
+
+
+def test_ibeacon_zero_power():
+    parsed = parse(IBEACON_ZERO_POWER)
+    assert parsed is not None
+    assert parsed.distance is None
 
 
 def tests_calculate_distance_meters():
