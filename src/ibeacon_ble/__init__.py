@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import struct
 from dataclasses import dataclass
-from typing import cast
+from math import sqrt
 from uuid import UUID
 
 from home_assistant_bluetooth import BluetoothServiceInfo
@@ -110,8 +110,4 @@ def calculate_distance_meters(power: int, rssi: int) -> float | None:
     """Calculate the distance in meters between the device and the beacon."""
     if rssi == 0 or power == 0:
         return None
-    if (ratio := rssi * 1.0 / power) < 1.0:
-        distance = pow(ratio, 10)
-    else:
-        distance = cast(float, 0.89976 * pow(ratio, 7.7095) + 0.111)
-    return min(distance, MAX_THEORETICAL_DISTANCE)
+    return min(sqrt(pow(10, ((power - rssi) / 10))), MAX_THEORETICAL_DISTANCE)

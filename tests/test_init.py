@@ -81,7 +81,7 @@ def test_parse():
 
     parsed.update_rssi(-70)
     assert parsed.rssi == -70
-    assert parsed.distance == 3
+    assert parsed.distance == 4
 
 
 def test_not_parse():
@@ -111,11 +111,13 @@ def test_ibeacon_zero_power():
 
 
 def tests_calculate_distance_meters():
-    assert calculate_distance_meters(-59, -60) == 1.1352362990362899
-    assert calculate_distance_meters(59, -60) == 1.183020818815412
+    assert calculate_distance_meters(-59, -60) == 1.1220184543019636
+    assert calculate_distance_meters(59, -60) == 400.0
     assert calculate_distance_meters(12, -80) == 400.0
     assert calculate_distance_meters(59, 0) is None
     assert calculate_distance_meters(-3, -100) == 400.0
     assert calculate_distance_meters(-3, -96) == 400.0
-    assert calculate_distance_meters(-3, -3) == 1.01076
-    assert calculate_distance_meters(-4, -3) == 0.056313514709472656
+    assert calculate_distance_meters(-3, -3) == 1
+    assert calculate_distance_meters(-4, -3) == 0.8912509381337456
+    assert calculate_distance_meters(-40, -66) == 19.952623149688797
+    assert calculate_distance_meters(-40, -46) == 1.9952623149688795
