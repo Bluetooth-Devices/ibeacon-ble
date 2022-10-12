@@ -89,6 +89,16 @@ def parse(service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
     if uuid_str in BANNED_UUIDS:
         return None
 
+    name = service_info.name
+    if len(name) == 18 and name[0] == "S" and name[17] == "C":
+        # If it starts with S and ends with C and the inner
+        # 16 characters are hex, it's a random transient
+        try:
+            int(name[1:17], 16)
+            return None
+        except ValueError:
+            pass
+
     (major, minor, power) = UNPACK_IBEACON(data[18:23])
     distance = calculate_distance_meters(power, service_info.rssi)
 
