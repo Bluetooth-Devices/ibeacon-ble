@@ -65,6 +65,28 @@ IBEACON_ZERO_POWER = BluetoothServiceInfo(
     service_uuids=[],
     source="hci0",
 )
+RANDOM_TRANSIENT = BluetoothServiceInfo(
+    address="00:00:00:00:00:00",
+    rssi=-60,
+    name="S6da7c9389bd5452cC",
+    manufacturer_data={
+        76: b"\x02\x15t'\x8b\xda\xb6DE \x8f\x0cr\x0e\xaf\x05\x995\x00\x00[$\xc5"
+    },
+    service_data={},
+    service_uuids=[],
+    source="hci0",
+)
+SC_NOT_RANDOM_TRANSIENT = BluetoothServiceInfo(
+    address="00:00:00:00:00:00",
+    rssi=-60,
+    name="SISAHAPPYPERSONINC",
+    manufacturer_data={
+        76: b"\x02\x15t'\x8b\xda\xb6DE \x8f\x0cr\x0e\xaf\x05\x995\x00\x00[$\xc5"
+    },
+    service_data={},
+    service_uuids=[],
+    source="hci0",
+)
 
 
 def test_parse():
@@ -102,6 +124,16 @@ def test_not_parse_short_service_info():
 def test_ignore_tilt():
     parsed = parse(TILT_SERVICE_INFO)
     assert parsed is None
+
+
+def test_ignore_random_transient():
+    parsed = parse(RANDOM_TRANSIENT)
+    assert parsed is None
+
+
+def test_not_random_transient():
+    parsed = parse(SC_NOT_RANDOM_TRANSIENT)
+    assert parsed is not None
 
 
 def test_ibeacon_zero_power():
