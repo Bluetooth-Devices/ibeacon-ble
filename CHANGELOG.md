@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.7.4 (2022-10-12)
+### Fix
+* Ignore random transient ibeacons ([#17](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/17)) ([`099f011`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/099f01186e5dbfaf827cd999ddd609c4fc341bff))
+
 ## v0.7.3 (2022-10-02)
 ### Fix
 * Handle ibeacon with impossible power value of 0 ([#16](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/16)) ([`9a9206a`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/9a9206a5db1c843ae227ba7bdc08d2618dee6e86))
