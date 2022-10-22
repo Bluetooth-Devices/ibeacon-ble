@@ -1,8 +1,11 @@
 from uuid import UUID
 
+import pytest
 from home_assistant_bluetooth import BluetoothServiceInfo
 
-from ibeacon_ble import calculate_distance_meters, iBeaconAdvertisement, parse
+from ibeacon_ble import calculate_distance_meters, iBeaconAdvertisement, iBeaconParser
+
+pytestmark = pytest.mark.asyncio
 
 SERVICE_INFO = BluetoothServiceInfo(
     address="00:00:00:00:00:00",
@@ -65,7 +68,7 @@ IBEACON_ZERO_POWER = BluetoothServiceInfo(
     service_uuids=[],
     source="hci0",
 )
-RANDOM_TRANSIENT = BluetoothServiceInfo(
+TESLA_TRANSIENT = BluetoothServiceInfo(
     address="00:00:00:00:00:00",
     rssi=-60,
     name="S6da7c9389bd5452cC",
@@ -89,8 +92,10 @@ SC_NOT_RANDOM_TRANSIENT = BluetoothServiceInfo(
 )
 
 
-def test_parse():
-    parsed = parse(SERVICE_INFO)
+async def test_parse():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(SERVICE_INFO)
     assert isinstance(parsed, iBeaconAdvertisement)
     assert parsed.cypress_humidity == 118.0234375
     assert parsed.cypress_temperature == 11.494531250000001
@@ -106,38 +111,53 @@ def test_parse():
     assert parsed.distance == 3
 
 
-def test_not_parse():
-    parsed = parse(NOT_IBEACON_SERVIE_INFO)
+async def test_not_parse():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(NOT_IBEACON_SERVIE_INFO)
     assert parsed is None
 
 
-def test_not_parse_2():
-    parsed = parse(NOT_IBEACON_SERVIE_INFO_2)
+async def test_not_parse_2():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(NOT_IBEACON_SERVIE_INFO_2)
     assert parsed is None
 
 
-def test_not_parse_short_service_info():
-    parsed = parse(SHORT_SERVICE_INFO)
+async def test_not_parse_short_service_info():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(SHORT_SERVICE_INFO)
     assert parsed is None
 
 
-def test_ignore_tilt():
-    parsed = parse(TILT_SERVICE_INFO)
+async def test_ignore_tilt():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(TILT_SERVICE_INFO)
     assert parsed is None
 
 
-def test_ignore_random_transient():
-    parsed = parse(RANDOM_TRANSIENT)
-    assert parsed is None
+async def test_telsa_transient():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(TESLA_TRANSIENT)
+    assert parsed is not None
+    assert parsed.transient is True
 
 
-def test_not_random_transient():
-    parsed = parse(SC_NOT_RANDOM_TRANSIENT)
+async def test_not_random_transient():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(SC_NOT_RANDOM_TRANSIENT)
     assert parsed is not None
 
 
-def test_ibeacon_zero_power():
-    parsed = parse(IBEACON_ZERO_POWER)
+async def test_ibeacon_zero_power():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(IBEACON_ZERO_POWER)
     assert parsed is not None
     assert parsed.distance is None
 
