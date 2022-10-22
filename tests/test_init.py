@@ -90,6 +90,17 @@ SC_NOT_RANDOM_TRANSIENT = BluetoothServiceInfo(
     service_uuids=[],
     source="hci0",
 )
+TELINK_VENDOR = BluetoothServiceInfo(
+    address="A4:C1:38:12:D6:FB",
+    rssi=-60,
+    name="gvh423",
+    manufacturer_data={
+        76: b"\x02\x15t'\x8b\xda\xb6DE \x8f\x0cr\x0e\xaf\x05\x995\x00\x00[$\xc5"
+    },
+    service_data={},
+    service_uuids=[],
+    source="hci0",
+)
 
 
 async def test_parse():
@@ -160,6 +171,14 @@ async def test_ibeacon_zero_power():
     parsed = ibeacon.parse(IBEACON_ZERO_POWER)
     assert parsed is not None
     assert parsed.distance is None
+
+
+async def test_vendor():
+    ibeacon = iBeaconParser()
+    await ibeacon.async_setup()
+    parsed = ibeacon.parse(TELINK_VENDOR)
+    assert parsed is not None
+    assert parsed.vendor == "Telink Semiconductor (Taipei) Co. Ltd."
 
 
 def tests_calculate_distance_meters():
