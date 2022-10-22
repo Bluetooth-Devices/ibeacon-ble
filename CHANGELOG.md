@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.0 (2022-10-22)
+### Feature
+* Provide vendor information and label transient devices ([#19](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/19)) ([`f035c9d`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/f035c9d00618e95fc23d1d50f376b476437d153c))
+
+### Breaking
+* The parser is now a bound method as `iBeaconParser.parse` which requires `async_setup` to be called before using it.  ([`f035c9d`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/f035c9d00618e95fc23d1d50f376b476437d153c))
+
 ## v0.7.4 (2022-10-12)
 ### Fix
 * Ignore random transient ibeacons ([#17](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/17)) ([`099f011`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/099f01186e5dbfaf827cd999ddd609c4fc341bff))
