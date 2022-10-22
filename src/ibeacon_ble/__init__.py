@@ -98,7 +98,8 @@ class iBeaconParser:
         """Lookup the vendor."""
         assert self._mac_vendor_lookup is not None  # nosec
         oui = self._mac_vendor_lookup.sanitise(mac_address)[:6]
-        return self._mac_vendor_lookup.prefixes.get(oui)
+        vendor: bytes | None = self._mac_vendor_lookup.prefixes.get(oui.encode())
+        return vendor.decode()[:254] if vendor is not None else None
 
     def parse(self, service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         if not is_ibeacon_service_info(service_info):
