@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.1 (2022-10-22)
+### Fix
+* Vendor lookup was always returning none ([#20](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/20)) ([`7debdd7`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/7debdd7b603fb0372afc82d866c9585dbd6e47d2))
+
 ## v1.0.0 (2022-10-22)
 ### Feature
 * Provide vendor information and label transient devices ([#19](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/19)) ([`f035c9d`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/f035c9d00618e95fc23d1d50f376b476437d153c))
