@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.1.0 (2024-02-24)
+
+### Feature
+
+* Switch to using aiooui for mac lookups ([#21](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/21)) ([`18f5288`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/18f52889a22596166b17bfce20059381289a2aa7))
+
 ## v1.0.1 (2022-10-22)
 ### Fix
 * Vendor lookup was always returning none ([#20](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/20)) ([`7debdd7`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/7debdd7b603fb0372afc82d866c9585dbd6e47d2))
