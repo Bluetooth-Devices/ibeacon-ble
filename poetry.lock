@@ -108,6 +108,17 @@ yarl = ">=1.0,<2.0"
 speedups = ["Brotli", "aiodns", "brotlicffi"]
 
 [[package]]
+name = "aiooui"
+version = "0.1.1"
+description = "Async OUI lookups"
+optional = false
+python-versions = ">=3.9,<4.0"
+files = [
+    {file = "aiooui-0.1.1-cp310-cp310-manylinux_2_31_x86_64.whl", hash = "sha256:2009889b1d4a93c4a166eea183403e2faea914ca1fd9db1bb00648cdac3cbd50"},
+    {file = "aiooui-0.1.1.tar.gz", hash = "sha256:21551d0019aa6c924652b0122f1b149197765095f78a70d0b6e33730c43a710b"},
+]
+
+[[package]]
 name = "aiosignal"
 version = "1.3.1"
 description = "aiosignal: a list of registered asynchronous callbacks"
@@ -1337,4 +1348,4 @@ docs = ["Sphinx", "myst-parser", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "4d1684b1b28f836fffb4069dc7a6e12db9e44f356202897a7ef4c53ce0f8506a"
+content-hash = "8bc327d5a82109559962c10a1e1a78bbde2f03b2929bd0d4162be5eae2c14cc3"
