@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.2.0 (2024-02-24)
+
+### Feature
+
+* Switch to using aiooui for mac lookups ([#22](https://github.com/Bluetooth-Devices/ibeacon-ble/issues/22)) ([`3623907`](https://github.com/Bluetooth-Devices/ibeacon-ble/commit/36239079461ff0d90ba7901fa54a3f0dcde2da6e))
+
 ## v1.1.0 (2024-02-24)
 
 ### Feature

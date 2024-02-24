@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ibeacon-ble"
-version = "1.1.0"
+version = "1.2.0"
 description = "Parser for iBeacon devices"
 authors = ["J. Nick Koston <nick@koston.org>"]
 license = "MIT"
