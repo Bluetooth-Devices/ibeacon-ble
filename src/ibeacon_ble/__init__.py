@@ -1,15 +1,12 @@
 from __future__ import annotations
 
-import asyncio
-import contextlib
 import struct
 from dataclasses import dataclass
 from typing import cast
 from uuid import UUID
 
-import aiohttp
+import aiooui
 from home_assistant_bluetooth import BluetoothServiceInfo
-from mac_vendor_lookup import AsyncMacLookup
 
 UNPACK_IBEACON = struct.Struct(">HHb").unpack
 
@@ -83,23 +80,9 @@ def is_ibeacon_service_info(service_info: BluetoothServiceInfo) -> bool:
 class iBeaconParser:
     """Parse iBeacon BLE advertisements."""
 
-    def __init__(self) -> None:
-        """Initialize the parser."""
-        self._mac_vendor_lookup: AsyncMacLookup | None = None
-
     async def async_setup(self) -> None:
-        self._mac_vendor_lookup = AsyncMacLookup()
-        with contextlib.suppress(asyncio.TimeoutError, aiohttp.ClientError):
-            # We don't care if this fails since it only
-            # improves the data we get.
-            await self._mac_vendor_lookup.load_vendors()
-
-    def _async_get_vendor(self, mac_address: str) -> str | None:
-        """Lookup the vendor."""
-        assert self._mac_vendor_lookup is not None  # nosec
-        oui = self._mac_vendor_lookup.sanitise(mac_address)[:6]
-        vendor: bytes | None = self._mac_vendor_lookup.prefixes.get(oui.encode())
-        return vendor.decode()[:254] if vendor is not None else None
+        if not aiooui.is_loaded():
+            await aiooui.async_load()
 
     def parse(self, service_info: BluetoothServiceInfo) -> iBeaconAdvertisement | None:
         if not is_ibeacon_service_info(service_info):
@@ -132,7 +115,7 @@ class iBeaconParser:
 
         vendor = None
         if ":" in service_info.address:
-            vendor = self._async_get_vendor(service_info.address)
+            vendor = aiooui.get_vendor(service_info.address)
 
         return iBeaconAdvertisement(
             name=service_info.name,
