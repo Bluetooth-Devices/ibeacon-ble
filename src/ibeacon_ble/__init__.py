@@ -110,7 +110,7 @@ class iBeaconParser:
             except ValueError:
                 pass
 
-        (major, minor, power) = UNPACK_IBEACON(data[18:23])
+        major, minor, power = UNPACK_IBEACON(data[18:23])
         distance = calculate_distance_meters(power, service_info.rssi)
 
         vendor = None
